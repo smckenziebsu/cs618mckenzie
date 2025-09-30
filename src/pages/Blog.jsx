@@ -18,8 +18,8 @@ export function Blog() {
   return (
     <div style={{ padding: 8 }}>
       <Header />
-       <br />
-        <br />
+      <br />
+      <br />
       <CreatePost />
       <br />
       <hr />
