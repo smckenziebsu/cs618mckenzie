@@ -1,3 +1,4 @@
+/* eslint-env node */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -20,14 +21,14 @@ async function createProdServer() {
     ),
   )
   app.use('*', async (req, res, next) => {
-        if (req.originalUrl === '/sitemap.xml') {
+    if (req.originalUrl === '/sitemap.xml') {
       const sitemap = await generateSitemap()
       return res
         .status(200)
         .set({ 'Content-Type': 'application/xml' })
         .end(sitemap)
     }
- 
+
     try {
       let template = fs.readFileSync(
         path.resolve(__dirname, 'dist/client/index.html'),
@@ -54,14 +55,13 @@ async function createDevServer() {
   })
   app.use(vite.middlewares)
   app.use('*', async (req, res, next) => {
-        if (req.originalUrl === '/sitemap.xml') {
+    if (req.originalUrl === '/sitemap.xml') {
       const sitemap = await generateSitemap()
       return res
         .status(200)
         .set({ 'Content-Type': 'application/xml' })
         .end(sitemap)
     }
- 
 
     try {
       const templateHtml = fs.readFileSync(
@@ -88,14 +88,14 @@ if (process.env.NODE_ENV === 'production') {
   const app = await createProdServer()
   app.listen(process.env.PORT, () => {
     console.log(
-      `ssr production server running on http://localhost:${process.env.PORT}`
+      `ssr production server running on http://localhost:${process.env.PORT}`,
     )
   })
 } else {
   const app = await createDevServer()
   app.listen(process.env.PORT, () => {
     console.log(
-      `ssr dev server running on http://localhost:${process.env.PORT}`
+      `ssr dev server running on http://localhost:${process.env.PORT}`,
     )
   })
 }
