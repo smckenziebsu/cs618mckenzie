@@ -11,7 +11,7 @@ sortOrder: String
 }
 type Query {
 test: String
-Posts(options: PostsOptions): [Post!]!
+posts(options: PostsOptions): [Post!]!
 postsByAuthor(username: String!, options: PostsOptions): [Post!]!
 postsByTag(tag: String!, options: PostsOptions): [Post!]!
 postById(id: ID!): Post
