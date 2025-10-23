@@ -5,7 +5,8 @@ import { mutationSchema, mutationResolver } from './mutation.js'
 export const typeDefs = [querySchema, postSchema, userSchema, mutationSchema]
 export const resolvers = [
   queryResolver,
-  postResolver,
-  userResolver,
-  mutationResolver,
-]
+    postResolver,
+      userResolver,
+        mutationResolver,
+        ]
+        
