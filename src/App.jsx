@@ -23,10 +23,17 @@ const router = createBrowserRouter([
 ])
 socket.on('connect', () => {
   console.log('connected to socket.io as', socket.id)
-  socket.emit('chat.message', 'hello from client')
+  socket.emit(
+    'chat.message',
+    new URLSearchParams(window.location.search).get('mymsg'),
+  )
 })
 socket.on('connect_error', (err) => {
   console.error('socket.io connect error:', err)
+})
+socket.on('chat.message', (message) => {
+  console.log(`${socket.id}: ${message}`)
+  socket.emit('chat.message', { username: socket.id, message })
 })
 export function App() {
   return (
